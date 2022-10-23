@@ -1,5 +1,29 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <button @click="start">Start</button>
+    <button @click="stop">Stop</button>
   </div>
 </template>
+
+<script>
+  import Vue from 'vue'
+  import VueConfetti from 'vue-confetti'
+  Vue.use(VueConfetti)
+ export default{
+  
+   methods:{
+    start() {
+      this.$confetti.start();
+		 },
+
+     	stop() {
+      	 this.$confetti.stop();
+    	 },
+
+   
+   },
+   computed:{
+
+   }
+ }
+</script>
