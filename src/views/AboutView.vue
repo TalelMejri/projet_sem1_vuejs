@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    
     <button @click="start">Start</button>
     <button @click="stop">Stop</button>
   </div>
@@ -27,3 +28,10 @@
    }
  }
 </script>
+<style>
+.about{
+  overflow: hidden;
+  width: 100vw;
+  position: relative;
+}
+</style>
