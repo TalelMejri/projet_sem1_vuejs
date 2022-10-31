@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <loading></loading>
+    <div>
     <navbar></navbar>
+  </div>
+  <div>
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
+  </div>
   </div>
 </template>
 <script>
@@ -19,7 +23,7 @@ export default{
 
 </script>
 <style scoped>
-
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 #app{
   overflow: hidden;
   width: 100vw;

@@ -1,8 +1,11 @@
 <template>
-  <div class="about">
-    
-    <button @click="start">Start</button>
-    <button @click="stop">Stop</button>
+    <div class="contact">
+      <div class="container-fluid py-5 " >
+          <div class="d-flex py-5  ">
+            <button class="btn btn-primary" @click="start">Start</button>
+            <button  class="btn btn-primary" @click="stop">Stop</button>
+          </div>
+      </div>
   </div>
 </template>
 
@@ -29,9 +32,5 @@
  }
 </script>
 <style>
-.about{
-  overflow: hidden;
-  width: 100vw;
-  position: relative;
-}
+ 
 </style>
