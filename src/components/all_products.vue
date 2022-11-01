@@ -14,7 +14,7 @@
                      <div  class="card-body col-lg-4" v-for="our1 in our" :key="our1.id">
                         <div class="box-container">
                             <div class="box">
-                                <img :class="{disabledimage:our1.quantity==0}" :src="our1.src" width="" alt="">
+                                <img :class="{disabledimage:our1.quantity==0}" :src="our1.src"  :alt="our1.name">
                                 <div class="content">
                                     <i style="cursor:pointer" @click="changer_favorite(our1)"  :class=" our1.favorite ? 'text-danger material-icons mx-2' : 'material-icons mx-2' "> favorite</i> 
                                     <h3>{{our1.name}}</h3>
