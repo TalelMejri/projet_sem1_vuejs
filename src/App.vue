@@ -1,14 +1,11 @@
 <template>
   <div id="app">
     <loading></loading>
-    <div>
     <navbar></navbar>
-  </div>
-  <div>
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
-  </div>
+ 
   </div>
 </template>
 <script>
