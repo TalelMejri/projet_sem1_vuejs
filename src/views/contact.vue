@@ -6,7 +6,7 @@
                     <div class="row shadow-lg p-5 rounded">
                         <div class="col-lg-6">
                             <h1>Add Your Reveiw :</h1>
-                            <form onsubmit.prevent="onsubmit">
+                            <form @submit.prevent="onsubmit">
                                 
                                 <label>Name :</label>
                                 <input type="text" class="form-control mb-2">
