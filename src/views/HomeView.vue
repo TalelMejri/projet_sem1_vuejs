@@ -15,20 +15,19 @@
                                             <router-link to="/about">
                                                 <button class="btn btn-outline-primary d-flex float-end">
                                                   <i  class="material-icons mx-2"> shopping_cart</i>
-                                                 Magasin  
-                                                
-                                             </button>
+                                                     Magasin  
+                                                </button>
                                             </router-link>   
-                                            </div> 
+                                          </div> 
                                     </div>
                                   </div>
                               </div>
                           </div>
                               <div class="col-lg-6 d-lg-block d-none text-center py-5">
-                                     <transition name="fade" mode="out-in">
+                                <transition name="fade" mode="in-out">
                                          <img :src="all_image[i]" class="rounded img-thumbnail shadow-sm" width="400px" height="500px"  alt="">
-                                      </transition>
-                               </div>
+                                </transition>
+                            </div>    
                       </div>
                   </div>
               </div>
@@ -63,17 +62,7 @@ export default {
 }
 </script>
 
-<style>
-
-
-
-.fade-enter,.fade-leave-to{
-  opacity: 0;
-  transform: translateX(2em);
-}
-.fade-enter-active,.fade-leave-active{
-  transition: all .3s ease;
-}
+<style scoped>
 
 .home{
  height: 97vh;
