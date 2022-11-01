@@ -8,7 +8,7 @@
                                   <div class="py-4  text-center">
                                   <div >
                                     <div class="intro_text">
-                                      <h1 >You Make the World a better Place </h1>
+                                      <h1 ></h1>
                                       <h2 >Just By being in it</h2>
                                           <h3>Join Us </h3>
                                           <div class="py-4 d-flex  justify-content-center">
@@ -25,8 +25,10 @@
                               </div>
                           </div>
                               <div class="col-lg-6 d-lg-block d-none text-center py-5">
-                                      <img src="../assets/intro.jpg"  data-aos="zoom-out" data-aos-delay="50" class="rounded img-thumbnail shadow-sm" width="400px" height="500px"  alt="">
-                              </div>
+                                     <transition name="fade" mode="out-in">
+                                         <img :src="all_image[i]" class="rounded img-thumbnail shadow-sm" width="400px" height="500px"  alt="">
+                                      </transition>
+                               </div>
                       </div>
                   </div>
               </div>
@@ -38,11 +40,40 @@
 
 export default {
   name: 'HomeView',
+ 
+  data(){
+    return{
+     i:0,
+      all_image:[
+       '/store/capuche.jpg',
+       '/store/hoodi.jpg',
+       '/store/hoodie.jpg',
+       '/store/maryoul.jpg',
+       '/store/switer.PNG',
+       '/store/t-shirt (2).jpg',
+       '/store/t-shirt (3).jpg',
+       '/store/t-shirt (4).jpg',
+       '/store/t-shirt.jpg',
+      ]
+    }
+  },
+  mounted(){
+    setInterval(()=>this.i<this.all_image.length-1 ? this.i++ : this.i=0 ,3000);
+  },
 }
 </script>
 
 <style>
 
+
+
+.fade-enter,.fade-leave-to{
+  opacity: 0;
+  transform: translateX(2em);
+}
+.fade-enter-active,.fade-leave-active{
+  transition: all .3s ease;
+}
 
 .home{
  height: 97vh;

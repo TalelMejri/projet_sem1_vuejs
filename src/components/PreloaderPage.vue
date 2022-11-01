@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!show_loading" class="loading">
+    <div v-if="show_loading" class="loading">
         <p class="content-preloader">
            <span>B</span>
            <span>I</span>
@@ -18,7 +18,7 @@ export default{
         }
     },
     mounted(){
-        setTimeout(()=>this.show_loading=true,5000);
+        setTimeout(()=>this.show_loading=false,10);
     }
 
 }
