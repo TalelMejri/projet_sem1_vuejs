@@ -5,7 +5,7 @@
                 <i class="material-icons mx-2">shopping_cart</i> 
                 <span class="badge bg-dark text-white rounded-pill mt-1 mx-1">{{cart}}</span>
              </button>
-     </div>
+      </div>
          <div v-for="(our_product,index) in our_products" :key="our_product.name">
                 <div  v-for="our in our_product" :key="our.name">
                     <div class="card mb-5">
@@ -24,7 +24,7 @@
                         </div>
                         <div>
                              <button :disabled="our1.quantity==0" @click="addcart(our1)" class="btn btn-outline-success">Add</button>
-                             <button @click="delete_cart(our1)" class="btn btn-outline-danger mx-2">Delete</button>
+                             <button :disabled="quantity==false"  @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
                         </div>
                     </div>
                     </div>
@@ -49,12 +49,14 @@ export default {
     },
     methods:{
         addcart(tab){
+            this.select=tab;
             if(tab.quantity>0){
                 tab.quantity--;
                 this.cart++;
             }
         },
         delete_cart(tab){
+            this.select=tab;
             if( this.cart>0){
                 tab.quantity++;
                 this.cart--;
@@ -67,8 +69,12 @@ export default {
              }*/
              tab.favorite = tab.favorite == 1 ? 0 :1;
          }
-   
-    }   
+    },
+    computed:{
+      quantity(){
+          return this.select.quantity > 0 ? true : false;
+      }
+    }
 }
 </script>
 
