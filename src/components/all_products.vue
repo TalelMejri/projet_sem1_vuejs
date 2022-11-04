@@ -94,13 +94,12 @@ export default {
             }
         },
         changer_favorite(tab){
-
              tab.favorite = tab.favorite == 1 ? 0 :1;
          }
     },
     computed:{
       
-    }
+    },
 }
 </script>
 

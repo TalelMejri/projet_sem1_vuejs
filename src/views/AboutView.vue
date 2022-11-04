@@ -18,7 +18,7 @@
                       <div class="d-flex flex-column gap-4 py-2">
                         <button @click="chose_all" class="btn btn-primary">All</button>
                         <button @click="chose_tshirt" class="btn btn-dark">T_shirt</button>
-                        <button @click="chose_switer" class="btn btn-dark">switer</button>
+                        <button @click="chose_sweater" class="btn btn-dark">sweater</button>
                         <button @click="chose_hoodi" class="btn btn-dark">hoodi</button>
                         <button @click="chose_chaussete" class="btn btn-dark">chaussete</button>
                       </div>
@@ -34,14 +34,13 @@
           </div>
       </div>
   </div>
-      <!--  -->
 </template>
 
 <script>
   import all_proudct from "../components/all_products.vue";
   import Vue from 'vue';
-  import VueConfetti from 'vue-confetti'
-  Vue.use(VueConfetti)
+  import VueConfetti from 'vue-confetti';
+  Vue.use(VueConfetti);
  export default{
   data(){
     return{
@@ -54,7 +53,7 @@
                {id:3,name:'T-Shirt 3',src:' /store/t-shirt (4).jpg',quantity:15,Prix:180,favorite:0},
                {id:4,name:'T-Shirt 3',src:' /store/t-shirt.jpg',quantity:15,Prix:100,favorite:0},
             ],
-            switer: [
+            sweater: [
                {id:5,name:'sweater 1',src:  '/store/maryoul.jpg',quantity:15,Prix:50,favorite:0},
                {id:6,name:'sweater 2',src: '/store/switer.PNG',quantity:15,Prix:60,favorite:0},
             ],
@@ -71,30 +70,32 @@
       }
   },
    methods:{
-    start() {
-      this.$confetti.start();
-		 },
+      start() {
+         this.$confetti.start();
+		   },
 
      	stop() {
       	 this.$confetti.stop();
     	 },
+
        chose_all(){
-        this.select_name='';
-       },
-       chose_tshirt(){
-        this.select_name="T_shirt";
+         this.select_name='';
        },
 
-       chose_switer(){
-         this.select_name="switer";
+       chose_tshirt(){
+         this.select_name="T_shirt";
+       },
+
+       chose_sweater(){
+         this.select_name="sweater";
        },
 
        chose_hoodi(){
-        this.select_name="hoodi";
+         this.select_name="hoodi";
        },
 
        chose_chaussete(){
-        this.select_name="chaussete";
+         this.select_name="chaussete";
        }
 
    },
@@ -103,16 +104,14 @@
    },
    computed:{
       myproject(){
-            if(this.select_name==""){
-               
-                return this.our_products;
-
-             }else{
+         if(this.select_name==""){
+              return this.our_products;
+            }
+             else{
               return this.our_products[''+this.select_name+''];
             } 
          }
-        }
-    
+    }
   }
 </script>
 <style scoped>
