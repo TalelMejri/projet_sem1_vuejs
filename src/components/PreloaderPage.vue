@@ -1,11 +1,12 @@
 <template>
     <div v-if="show_loading" class="loading">
         <p class="content-preloader">
-           <span>B</span>
-           <span>I</span>
-           <span>Z</span>
-           <span>O</span>
+           <span>V</span>
+           <span>U</span>
+           <span>E</span>
+           <span>JS</span>
         </p>
+        <div class="add">Tp Premier Semester </div>
     </div>
 </template>
 
@@ -18,15 +19,22 @@ export default{
         }
     },
     mounted(){
-        setTimeout(()=>this.show_loading=false,10);
+        setTimeout(()=>this.show_loading=false,20);
     }
 
 }
 </script>
 
 <style>
+.add{
+  position: absolute;
+ text-align: center;
+ margin-left: 100px;
+ font-weight: 600;
+  margin-top:700px;
+}
 .loading{
-    background-color:  #5995fd;
+    background-image: linear-gradient(to right , #42B883,#35495E);
     height: 100vh;
     z-index: 99999;
     position: fixed;

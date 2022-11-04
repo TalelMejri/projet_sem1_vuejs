@@ -25,7 +25,7 @@ import contact from "@/components/contact.vue";
         start_message(){
             console.log("hheh");
             this.afficher_message=true;
-            setTimeout(()=>this.afficher_message=false,3000);
+            setTimeout(()=>this.afficher_message=false,10);
         }
     }
  }
