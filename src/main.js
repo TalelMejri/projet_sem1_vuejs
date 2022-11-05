@@ -7,6 +7,11 @@ import "bootstrap/js/dist/offcanvas";
 import "bootstrap/js/dist/alert";
 import "bootstrap/js/dist/modal";
 import "bootstrap/js/dist/dropdown";
+
+/*global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$ = $;*/
+
 Vue.config.productionTip = false
 
 new Vue({

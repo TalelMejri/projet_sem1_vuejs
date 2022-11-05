@@ -96,7 +96,6 @@
        chose_chaussete(){
          this.select_name="chaussete";
        }
-
    },
    components:{
      all_proudct

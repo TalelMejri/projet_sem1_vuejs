@@ -1,15 +1,13 @@
 <template>
   <div>
-     <button @click="generate_pdf()">generete pdf</button>
     <div class="d-flex justify-content-center">
            <button :disabled="all_purchase.length==0" class="btn btn-dark mb-4 d-flex" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <i class="material-icons mx-2">shopping_cart</i> 
-              <span class="badge bg-dark text-white rounded-pill mt-1 mx-1">15</span>
+              <span class="badge bg-dark text-white rounded-pill mt-1 mx-1">{{all_cart}}</span>
            </button>
     </div>
 
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
@@ -92,7 +90,7 @@
                               <span><strong>${{total}}</strong></span>
                             </li>
                           </ul>
-                          <button type="button" class="btn btn-primary btn-lg btn-block">
+                          <button @click="generate_pdf()" type="button" class="btn btn-primary btn-lg btn-block">
                             Go to checkout
                           </button>
                         </div>
@@ -102,8 +100,7 @@
            
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -137,7 +134,6 @@
        </div>
       </div>
       <div v-else> 
-        
           <div >
               <div class="row d-flex justify-content-center  container p-4">
                   <div class="col-lg-4 " v-for="our1 in our_products" :key="our1.id">
@@ -169,16 +165,27 @@
 
 
 <script>
-import { jsPDF } from "jspdf";
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
+import Vue from 'vue';
+import VueConfetti from 'vue-confetti';
+import $ from 'jquery';
+Vue.use(VueConfetti);
 export default {
   
   name:'all_product',
   data(){
       return{
           all_purchase:[],
-          quantity:0
-      }
-  },
+          quantity:0,
+          heading:"Your Facture",
+          item:[
+            {name:'hhhhh'},
+            {name:'ddd'},
+            {name:'hhsdsdsdshhh'}
+          ]
+  }
+},
   props:{
       our_products:Array,
       select_name:String
@@ -188,12 +195,31 @@ export default {
   },
   methods:{
     generate_pdf(){
-      const doc = new jsPDF();
-      this.all_purchase.forEach((v)=>{
-        doc.Array(v.name, 10, 10);
-        doc.Array(v.cart, 10, 10);
-    })
-      doc.save("a1.pdf");
+      $("[data-bs-dismiss=modal]").trigger({ type: "click" });
+      this.$confetti.start();
+      setTimeout(()=> this.$confetti.stop(),5000);
+      const doc = new jsPDF({
+        orientation:"portrait",
+        unit:"in",
+        format:"letter"
+      });
+        doc.text(this.heading,1.5,1.2);
+        autoTable(doc, { html: '#my-table' }) 
+        this.all_purchase.forEach((v)=>{
+        var val= v.id;
+        var name=v.name;
+        var quantity=v.cart;
+        autoTable(doc, {
+          head: [['Id', 'Name', 'Quantity']],
+          body: [
+            [val, name, quantity],
+          ],
+      })
+      })  
+      var total_payment="Votre Total"+this.total+" Dt ";
+      doc.text(total_payment,1,2);
+      doc.save(`${Math.random()}.pdf`);
+
     },
       delete_product(product){
           if(confirm('do you want delete this product ?')){
@@ -229,6 +255,13 @@ export default {
       let all_prix=0;
       this.all_purchase.forEach((e)=>{
           all_prix+=(e.Prix*e.cart);
+      });
+      return all_prix;
+    },
+    all_cart(){
+      let all_prix=0;
+      this.all_purchase.forEach((e)=>{
+          all_prix+=e.cart;
       });
       return all_prix;
     }
