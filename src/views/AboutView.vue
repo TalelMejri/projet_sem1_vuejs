@@ -5,8 +5,10 @@
             <div class="col-xl-12 col-lg-9 container">
             <div class="row  rounded shadow-lg p-5">
                 <div class="col-lg-2 border-end">
-                     <!--<button class="btn btn-primary" @click="start">Start</button>
-                     <button  class="btn btn-primary" @click="stop">Stop</button>-->
+                 <!--
+                     <button class="btn btn-primary" @click="start">Start</button>
+                     <button  class="btn btn-primary" @click="stop">Stop</button>
+                  -->
                       <h1>Menu :</h1>
                       <div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
@@ -22,9 +24,7 @@
                         <button @click="chose_hoodi" class="btn btn-dark">hoodi</button>
                         <button @click="chose_chaussete" class="btn btn-dark">chaussete</button>
                       </div>
-                      <div>
-
-                      </div>
+  
                 </div>
                 <div class="col-lg-10 text-center">
                       <all_proudct :our_products="myproject" :select_name="select_name" ></all_proudct>
@@ -48,23 +48,23 @@
       select_name:'',
       our_products: {
             T_shirt: [
-               {id:1,name:'T-Shirt 1',src:' /store/t-shirt (2).jpg',quantity:15,Prix:150,favorite:0},
-               {id:2,name:'T-Shirt 2',src:' /store/t-shirt (3).jpg',quantity:15,Prix:200,favorite:0},
-               {id:3,name:'T-Shirt 3',src:' /store/t-shirt (4).jpg',quantity:15,Prix:180,favorite:0},
-               {id:4,name:'T-Shirt 3',src:' /store/t-shirt.jpg',quantity:15,Prix:100,favorite:0},
+               {id:1,name:'T-Shirt 1',src:' /store/t-shirt (2).jpg',quantity:15,Prix:150,favorite:0,  cart:0},
+               {id:2,name:'T-Shirt 2',src:' /store/t-shirt (3).jpg',quantity:15,Prix:200,favorite:0 , cart:0},
+               {id:3,name:'T-Shirt 3',src:' /store/t-shirt (4).jpg',quantity:15,Prix:180,favorite:0 , cart:0},
+               {id:4,name:'T-Shirt 3',src:' /store/t-shirt.jpg',quantity:15,Prix:100,favorite:0 , cart:0},
             ],
             sweater: [
-               {id:5,name:'sweater 1',src:  '/store/maryoul.jpg',quantity:15,Prix:50,favorite:0},
-               {id:6,name:'sweater 2',src: '/store/switer.PNG',quantity:15,Prix:60,favorite:0},
+               {id:5,name:'sweater 1',src:  '/store/maryoul.jpg',quantity:15,Prix:50,favorite:0 , cart:0},
+               {id:6,name:'sweater 2',src: '/store/switer.PNG',quantity:15,Prix:60,favorite:0 , cart:0},
             ],
             hoodi: [
-               {id:7,name:'hoodi 1',src: '/store/capuche.jpg',quantity:15,Prix:15,favorite:1},
-               {id:8,name:'hoodi 2',src: '/store/hoodi.jpg',quantity:15,Prix:20,favorite:0},
-               {id:9,name:'hoodi 2',src: '/store/hoodie.jpg',quantity:15,Prix:25,favorite:0},
+               {id:7,name:'hoodi 1',src: '/store/capuche.jpg',quantity:15,Prix:15,favorite:1 , cart:0},
+               {id:8,name:'hoodi 2',src: '/store/hoodi.jpg',quantity:15,Prix:20,favorite:0 , cart:0},
+               {id:9,name:'hoodi 2',src: '/store/hoodie.jpg',quantity:15,Prix:25,favorite:0 , cart:0},
             ],
             chaussete: [
-               {id:10,name:'chaussete 1',src:  '/store/socks_blue.jpg',quantity:15,Prix:10,favorite:1},
-               {id:11,name:'chaussete 2',src: '/store/socks_green.jpg',quantity:15,Prix:12,favorite:0},
+               {id:10,name:'chaussete 1',src:  '/store/socks_blue.jpg',quantity:15,Prix:10,favorite:1 , cart:0},
+               {id:11,name:'chaussete 2',src: '/store/socks_green.jpg',quantity:15,Prix:12,favorite:0 , cart:0},
             ],
         }
       }

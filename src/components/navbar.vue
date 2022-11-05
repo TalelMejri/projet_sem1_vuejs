@@ -33,6 +33,7 @@ router-link a{
   font-size: 18px;
   font-weight: 700;
   color: #4fc3dc;
+  text-decoration: none;
   transition: 0.3s;
  }
 

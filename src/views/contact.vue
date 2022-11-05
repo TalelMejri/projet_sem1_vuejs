@@ -4,7 +4,6 @@
     </div>
 </template>
 
-
 <script>
 import contact from "@/components/contact.vue";
 
@@ -23,9 +22,8 @@ import contact from "@/components/contact.vue";
             this.listReview.push(review);
         },
         start_message(){
-            console.log("hheh");
             this.afficher_message=true;
-            setTimeout(()=>this.afficher_message=false,10);
+            setTimeout(()=>this.afficher_message=false,3000);
         }
     }
  }
