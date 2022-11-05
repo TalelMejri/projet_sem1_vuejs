@@ -9,12 +9,12 @@
                      <button class="btn btn-primary" @click="start">Start</button>
                      <button  class="btn btn-primary" @click="stop">Stop</button>
                   -->
-                      <h1>Menu :</h1>
-                      <div class="mt-5 py-4">
+                      <h1 class="mb-5">Menu :</h1>
+                      <!--<div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
                           <input type="range" id="temp" min="0" v-model="prix" max="200" step="1" name="temp" />
                           <input type="text" class="form-control" v-model="prix">
-                      </div>
+                      </div>-->
 
                       Select Your Kind OF Clothes :
                       <div class="d-flex flex-column gap-4 py-2">
@@ -59,7 +59,7 @@
             hoodi: [
                {id:7,name:'hoodi 1',src: '/store/capuche.jpg',quantity:15,Prix:15,favorite:1 , cart:0},
                {id:8,name:'hoodi 2',src: '/store/hoodi.jpg',quantity:15,Prix:20,favorite:0 , cart:0},
-               {id:9,name:'hoodi 2',src: '/store/hoodie.jpg',quantity:15,Prix:25,favorite:0 , cart:0},
+               {id:9,name:'hoodi 3',src: '/store/hoodie.jpg',quantity:15,Prix:25,favorite:0 , cart:0},
             ],
             chaussete: [
                {id:10,name:'chaussete 1',src:  '/store/socks_blue.jpg',quantity:15,Prix:10,favorite:1 , cart:0},

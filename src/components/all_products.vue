@@ -125,7 +125,7 @@
                          </div>
                          <div>
                               <button :disabled="our1.quantity==0" @click="addcart(our1)" class="btn btn-outline-success">Add</button>
-                              <button   @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
+                              <button  :disabled="our1.cart==0"   @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
                          </div>
                      </div>
                  </div>
@@ -179,11 +179,7 @@ export default {
           all_purchase:[],
           quantity:0,
           heading:"Your Facture",
-          item:[
-            {name:'hhhhh'},
-            {name:'ddd'},
-            {name:'hhsdsdsdshhh'}
-          ]
+
   }
 },
   props:{
@@ -191,11 +187,11 @@ export default {
       select_name:String
   },
   mounted(){
-          console.log(this.all_purchase);
+        console.log(this.all_purchase);
   },
   methods:{
     generate_pdf(){
-      $("[data-bs-dismiss=modal]").trigger({ type: "click" });
+      $(" [data-bs-dismiss=modal] ").trigger({ type : "click" });
       this.$confetti.start();
       setTimeout(()=> this.$confetti.stop(),5000);
       const doc = new jsPDF({
@@ -203,7 +199,9 @@ export default {
         unit:"in",
         format:"letter"
       });
-        doc.text(this.heading,1.5,1.2);
+        doc.text(this.heading,3.5,0.4);// (message,horizontale,vertical)
+        var total_payment="Votre Total "+this.total+" Dt ";
+        doc.text(total_payment,3.4,0.7);
         autoTable(doc, { html: '#my-table' }) 
         this.all_purchase.forEach((v)=>{
         var val= v.id;
@@ -216,10 +214,11 @@ export default {
           ],
       })
       })  
-      var total_payment="Votre Total"+this.total+" Dt ";
-      doc.text(total_payment,1,2);
-      doc.save(`${Math.random()}.pdf`);
 
+      doc.save(`${Math.random()}.pdf`);
+      for(let i=0;i<this.all_purchase.length;i++){
+         this.all_purchase.splice(this.all_purchase[i],1);
+      }
     },
       delete_product(product){
           if(confirm('do you want delete this product ?')){
