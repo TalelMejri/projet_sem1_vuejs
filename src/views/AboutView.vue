@@ -44,14 +44,13 @@
  export default{
   data(){
     return{
-      prix:0,
       select_name:'',
       our_products: {
             T_shirt: [
-               {id:1,name:'T-Shirt 1',src:' /store/t-shirt (2).jpg',quantity:15,Prix:150,favorite:0,  cart:0},
-               {id:2,name:'T-Shirt 2',src:' /store/t-shirt (3).jpg',quantity:15,Prix:200,favorite:0 , cart:0},
-               {id:3,name:'T-Shirt 3',src:' /store/t-shirt (4).jpg',quantity:15,Prix:180,favorite:0 , cart:0},
-               {id:4,name:'T-Shirt 3',src:' /store/t-shirt.jpg',quantity:15,Prix:100,favorite:0 , cart:0},
+               {id:1,name:'T-Shirt 1',src:' /store/t-shirt (2).jpg',quantity:5,Prix:10,favorite:0,  cart:0},
+               {id:2,name:'T-Shirt 2',src:' /store/t-shirt (3).jpg',quantity:10,Prix:11,favorite:0 , cart:0},
+               {id:3,name:'T-Shirt 3',src:' /store/t-shirt (4).jpg',quantity:9,Prix:12,favorite:0 , cart:0},
+               {id:4,name:'T-Shirt 3',src:' /store/t-shirt.jpg',quantity:15,Prix:13,favorite:0 , cart:0},
             ],
             sweater: [
                {id:5,name:'sweater 1',src:  '/store/maryoul.jpg',quantity:15,Prix:50,favorite:0 , cart:0},
