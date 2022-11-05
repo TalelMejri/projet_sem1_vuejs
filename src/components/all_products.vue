@@ -1,5 +1,6 @@
 <template>
   <div>
+     <button @click="generate_pdf()">generete pdf</button>
     <div class="d-flex justify-content-center">
            <button :disabled="all_purchase.length==0" class="btn btn-dark mb-4 d-flex" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <i class="material-icons mx-2">shopping_cart</i> 
@@ -14,9 +15,8 @@
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">All Purchase</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-           
+              </div>
+                   <div class="modal-body">
                             <div class="row d-flex justify-content-center my-4">
                               <div class="col-md-8">
                                   <div v-for="buy in all_purchase" :key="buy.id">
@@ -26,55 +26,38 @@
                                     <h5 class="mb-0">{{buy.name}}</h5>
                                   </div>
                                   <div class="card-body">
-                                 
                                     <div class="row">
                                       <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                      
                                         <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
                                           <img :src="buy.src"
                                             class="w-100"  />
-                                          
                                         </div>
-                                  
                                       </div>
-                        
                                       <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                    
-                                       
                                         <p>Size: M</p>
-                                       
                                         <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
                                           title="Move to the wish list" @click="delete_product(buy.id)">
                                           <i  class="material-icons">delete</i>
                                         </button>
-                                      
                                       </div>
-                        
                                       <div class="col-lg-4 ">
-                                    
                                         <div class="d-flex" >
-
                                           <button @click="buy.cart--" class="btn btn-primary w-50"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            
                                             <i  class="material-icons"> remove</i>
                                           </button>
-                        
                                           <div class="form-control">
                                             <input id="form1" min="0" name="quantity"  v-model="buy.cart" type="number" class="form-control" />
                                             <label class="form-label" for="form1">Quantity</label>
                                           </div>
-                        
                                           <button  @click="buy.cart++" class="btn btn-primary w-50"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                             <i  class="material-icons">add</i>
                                           </button>
                                         </div>
-                              
                                         <p class="text-start text-md-center py-4">
                                           <strong>{{buy.Prix}} $</strong>
                                         </p>
-                                      
                                       </div>
                                     </div>
                                   </div>
@@ -109,7 +92,6 @@
                               <span><strong>${{total}}</strong></span>
                             </li>
                           </ul>
-              
                           <button type="button" class="btn btn-primary btn-lg btn-block">
                             Go to checkout
                           </button>
@@ -173,7 +155,7 @@
                                  </div>
                              </div>
                              <div>
-                                  <button :disabled="our1.quantity==0" @click="addcart(our1)" class="btn btn-outline-success">Add</button>
+                                  <button  :disabled="our1.quantity==0" @click="addcart(our1)" class="btn btn-outline-success">Add</button>
                                   <button  :disabled="our1.cart==0"  @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
                              </div>
                          </div>
@@ -187,6 +169,7 @@
 
 
 <script>
+import { jsPDF } from "jspdf";
 export default {
   
   name:'all_product',
@@ -204,6 +187,14 @@ export default {
           console.log(this.all_purchase);
   },
   methods:{
+    generate_pdf(){
+      const doc = new jsPDF();
+      this.all_purchase.forEach((v)=>{
+        doc.Array(v.name, 10, 10);
+        doc.Array(v.cart, 10, 10);
+    })
+      doc.save("a1.pdf");
+    },
       delete_product(product){
           if(confirm('do you want delete this product ?')){
              let item=this.all_purchase.find((v)=>v.id==product);
@@ -215,14 +206,11 @@ export default {
           if(tab.quantity>0){
               tab.quantity--;
               tab.cart++;
-           let item=this.all_purchase.find((v)=>v.id==tab.id);
-           if(!item){
+            let item=this.all_purchase.find((v)=>v.id==tab.id);
+            if(!item){
               this.all_purchase.push(tab);
-           }
-           console.log(this.all_purchase);
-      
-            
-          
+            }
+            console.log(this.all_purchase);
           }
       },
       delete_cart(tab){
