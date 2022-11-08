@@ -211,7 +211,7 @@ export default {
           body: [
             [val, name, quantity],
           ],
-      })
+        })
       })  
 
       doc.save(`${Math.random()}.pdf`);
