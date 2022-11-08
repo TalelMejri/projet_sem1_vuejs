@@ -22,7 +22,7 @@ export default{
 <style scoped>
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 #app{
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100vw;
 }
 .fade-enter,.fade-leave-to{

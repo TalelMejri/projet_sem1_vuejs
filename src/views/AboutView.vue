@@ -5,16 +5,13 @@
             <div class="col-xl-12 col-lg-9 container">
             <div class="row  rounded shadow-lg p-5">
                 <div class="col-lg-2 border-end">
-                 <!--
-                     <button class="btn btn-primary" @click="start">Start</button>
-                     <button  class="btn btn-primary" @click="stop">Stop</button>
-                  -->
+
                       <h1 class="mb-5">Menu :</h1>
-                      <!--<div class="mt-5 py-4">
+                      <div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
                           <input type="range" id="temp" min="0" v-model="prix" max="200" step="1" name="temp" />
                           <input type="text" class="form-control" v-model="prix">
-                      </div>-->
+                      </div>
 
                       Select Your Kind OF Clothes :
                       <div class="d-flex flex-column gap-4 py-2">
@@ -27,7 +24,7 @@
   
                 </div>
                 <div class="col-lg-10 text-center">
-                      <all_proudct :our_products="myproject" :select_name="select_name" ></all_proudct>
+                      <all_proudct @sortby="sortby" :our_products="myproject" :select_name="select_name" :prix="prix" ></all_proudct>
                 </div>
               </div>
             </div>
@@ -44,13 +41,15 @@
  export default{
   data(){
     return{
+      prix:0,
+      do_sort_by_product:0,
       select_name:'',
       our_products: {
             T_shirt: [
                {id:1,name:'T-Shirt 1',src:' /store/t-shirt (2).jpg',quantity:5,Prix:10,favorite:0,  cart:0},
-               {id:2,name:'T-Shirt 2',src:' /store/t-shirt (3).jpg',quantity:10,Prix:11,favorite:0 , cart:0},
-               {id:3,name:'T-Shirt 3',src:' /store/t-shirt (4).jpg',quantity:9,Prix:12,favorite:0 , cart:0},
-               {id:4,name:'T-Shirt 3',src:' /store/t-shirt.jpg',quantity:15,Prix:13,favorite:0 , cart:0},
+               {id:2,name:'T-Shirt 3',src:' /store/t-shirt (3).jpg',quantity:10,Prix:11,favorite:0 , cart:0},
+               {id:3,name:'T-Shirt 4',src:' /store/t-shirt (4).jpg',quantity:9,Prix:12,favorite:0 , cart:0},
+               {id:4,name:'T-Shirt 5',src:' /store/t-shirt.jpg',quantity:15,Prix:13,favorite:0 , cart:0},
             ],
             sweater: [
                {id:5,name:'sweater 1',src:  '/store/maryoul.jpg',quantity:15,Prix:50,favorite:0 , cart:0},
@@ -69,14 +68,9 @@
       }
   },
    methods:{
-      start() {
-         this.$confetti.start();
-		   },
-
-     	stop() {
-      	 this.$confetti.stop();
-    	 },
-
+    sortby(){
+      this.do_sort_by_product=1;
+    },
        chose_all(){
          this.select_name='';
        },
@@ -102,15 +96,41 @@
    },
    computed:{
       myproject(){
-         if(this.select_name==""){
-              return this.our_products;
+          if(this.select_name==""){
+             if(this.do_sort_by_product==1){
+               for(let property in this.our_products){
+                   for(let i=0;i<this.our_products[property].length;i++){
+                       console.log(this.our_products[property]);
+                       return this.our_products[property].sort((a,b)=>a.Prix>b.Prix ? -1 : 1);
+                    }
+                  }
+                }
+               return this.our_products;
             }
-             else{
-              return this.our_products[''+this.select_name+''];
-            } 
-         }
+           else{
+               if(this.do_sort_by_product==1){
+                    return this.our_products[''+this.select_name+''].sort((a,b)=>a.Prix>b.Prix ? -1 : 1); 
+               }  
+                return this.our_products[''+this.select_name+''];
+            }   
+          }
+               /*if(this.prix!=0){
+                 for(let property in this.our_products){
+                   for(let i=0;i<this.our_products[property].length;i++){
+                       if(this.our_products[property][i].Prix >= this.prix){
+                         return this.our_products[property];
+                       }
+                   }
+                  //  for(let variant of this.our_products[property]){
+                  //     console.log(variant.Prix);
+                  //  }
+                 }  
+                }*/
     }
   }
+
+
+  
 </script>
 <style scoped>
 

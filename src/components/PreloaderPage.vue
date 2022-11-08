@@ -6,7 +6,6 @@
            <span>E</span>
            <span>JS</span>
         </p>
-        <div class="add">Tp Premier Semester </div>
     </div>
 </template>
 
@@ -27,6 +26,7 @@ export default{
 
 <style>
 .add{
+
   position: absolute;
  text-align: center;
  margin-left: 100px;
@@ -34,6 +34,7 @@ export default{
   margin-top:700px;
 }
 .loading{
+  overflow-x: hidden;
     background-image: linear-gradient(to right , #42B883,#35495E);
     height: 100vh;
     z-index: 99999;

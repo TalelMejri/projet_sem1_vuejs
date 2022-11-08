@@ -1,12 +1,20 @@
 <template>
   <div>
-    <div class="d-flex justify-content-center">
+    <div class=" ">
+          <div class="">
+            <div class="d-flex justify-content-center">
            <button :disabled="all_purchase.length==0" class="btn btn-dark mb-4 d-flex" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <i class="material-icons mx-2">shopping_cart</i> 
               <span class="badge bg-dark text-white rounded-pill mt-1 mx-1">{{all_cart}}</span>
            </button>
+          </div>
+          <div class="">
+           <button @click="sortby()" class="btn btn-primary">
+              Sort By 
+           </button>
+          </div>
+          </div>
     </div>
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -109,8 +117,8 @@
     <div v-if="select_name==''">
        <div v-for="(our_product) in our_products" :key="our_product.name">
           <div class="row d-flex justify-content-center  container p-4">
-              <div class="col-lg-4 " v-for="our1 in our_product" :key="our1.id">
-                  <div class="card mb-5">
+              <div  class="col-lg-4 " v-for="our1 in our_product" :key="our1.id" >
+                  <div v-if="our1.Prix>prix"  class="card mb-5">
                       <div  class="card-body container">
                          <p class="card-header">{{our1.name}}</p>
                          <div class="box-container">
@@ -133,33 +141,32 @@
       </div>
        </div>
       </div>
-      <div v-else> 
-          <div >
-              <div class="row d-flex justify-content-center  container p-4">
-                  <div class="col-lg-4 " v-for="our1 in our_products" :key="our1.id">
-                      <div class="card mb-5">
-                          <div  class="card-body container">
-                             <p class="card-header">{{our1.name}}</p>
-                             <div class="box-container">
-                                 <div class="box">
-                                     <img :class="{disabledimage:our1.quantity==0}" :src="our1.src"  :alt="our1.name">
-                                     <div class="content">
-                                         <i style="cursor:pointer" @click="changer_favorite(our1)"  :class=" our1.favorite ? 'text-danger material-icons mx-2' : 'material-icons mx-2' "> favorite</i> 
-                                         <h3>{{our1.name}}</h3>
-                                         <p>{{our1.quantity}}(available)  <br> {{our1.Prix}} dt</p>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div>
-                                  <button  :disabled="our1.quantity==0" @click="addcart(our1)" class="btn btn-outline-success">Add</button>
-                                  <button  :disabled="our1.cart==0"  @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
-                             </div>
-                         </div>
-                     </div>
-                  </div>
-          </div>
-          </div>
-      </div>
+
+      <div v-else >
+            <div class="row d-flex justify-content-center  container p-4">
+                <div class="col-lg-4 " v-for="our1 in our_products" :key="our1.id">
+                    <div v-if="our1.Prix >= prix" class="card mb-5">
+                        <div  class="card-body container">
+                           <p class="card-header">{{our1.name}}</p>
+                           <div class="box-container">
+                               <div class="box">
+                                   <img :class="{disabledimage:our1.quantity==0}" :src="our1.src"  :alt="our1.name">
+                                   <div class="content">
+                                       <i style="cursor:pointer" @click="changer_favorite(our1)"  :class=" our1.favorite ? 'text-danger material-icons mx-2' : 'material-icons mx-2' "> favorite</i> 
+                                       <h3>{{our1.name}}</h3>
+                                       <p>{{our1.quantity}}(available)  <br> {{our1.Prix}} dt</p>
+                                   </div>
+                               </div>
+                           </div>
+                           <div>
+                                <button  :disabled="our1.quantity==0" @click="addcart(our1)" class="btn btn-outline-success">Add</button>
+                                <button  :disabled="our1.cart==0"  @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+        </div>
+    </div>
       </div>
 </template>
 
@@ -183,12 +190,16 @@ export default {
 },
   props:{
       our_products:Array,
-      select_name:String
+      select_name:String,
+      prix:Number
   },
   mounted(){
         console.log(this.all_purchase);
   },
   methods:{
+    sortby(){
+      this.$emit("sortby");
+    },
     generate_pdf(){
       $(" [data-bs-dismiss=modal] ").trigger({ type : "click" });
       this.$confetti.start();

@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-          <div class="container-fluid py-5 " >
-              <div class="d-flex py-5  ">
+          <div class="container-fluid py-5">
+              <div class="d-flex py-5 justify-content-center">
                   <div class="col-xl-12 col-md-12 col-lg-12 py-5">
                       <div class="row py-5">
-                              <div class="col-lg-6 py-5" >
-                                  <div class="py-4  text-center">
+                              <div class="col-lg-6 py-5">
+                                  <div class="py-4 text-center">
                                   <div >
                                     <div class="intro_text">
                                       <h1 ></h1>
