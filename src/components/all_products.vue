@@ -179,7 +179,6 @@ export default {
           all_purchase:[],
           quantity:0,
           heading:"Your Facture",
-
   }
 },
   props:{
@@ -200,7 +199,7 @@ export default {
         format:"letter"
       });
         doc.text(this.heading,3.5,0.4);// (message,horizontale,vertical)
-        var total_payment="Votre Total "+this.total+" Dt ";
+        var total_payment="Total amount :"+this.total+" Dt ";
         doc.text(total_payment,3.4,0.7);
         autoTable(doc, { html: '#my-table' }) 
         this.all_purchase.forEach((v)=>{
