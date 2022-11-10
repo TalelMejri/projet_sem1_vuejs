@@ -10,7 +10,7 @@
           </div>
           <div class="">
            <button @click="sortby()" class="btn btn-primary">
-              Sort By 
+              Sort By Prix
            </button>
           </div>
           </div>
@@ -189,7 +189,7 @@ export default {
   }
 },
   props:{
-      our_products:Array,
+      our_products:Object,
       select_name:String,
       prix:Number
   },

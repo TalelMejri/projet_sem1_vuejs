@@ -9,19 +9,18 @@
                       <h1 class="mb-5">Menu :</h1>
                       <div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
-                          <input type="range" id="temp" min="0" v-model="prix" max="200" step="1" name="temp" />
+                          <input type="range" id="temp" min="0" v-model="prix" max="60" step="1" name="temp" />
                           <input type="text" class="form-control" v-model="prix">
                       </div>
 
                       Select Your Kind OF Clothes :
                       <div class="d-flex flex-column gap-4 py-2">
-                        <button @click="chose_all" class="btn btn-primary">All</button>
-                        <button @click="chose_tshirt" class="btn btn-dark">T_shirt</button>
-                        <button @click="chose_sweater" class="btn btn-dark">sweater</button>
-                        <button @click="chose_hoodi" class="btn btn-dark">hoodi</button>
-                        <button @click="chose_chaussete" class="btn btn-dark">chaussete</button>
+                        <button @click="chose_option('')" class="btn" :class="select_name=='' ? 'btn-primary' :'btn-dark'">All</button>
+                        <button @click="chose_option('T_shirt')" class="btn" :class="select_name=='T_shirt' ? 'btn-primary' :'btn-dark'">T_shirt</button>
+                        <button @click="chose_option('sweater')" class="btn" :class="select_name=='sweater' ? 'btn-primary' :'btn-dark'">sweater</button>
+                        <button @click="chose_option('hoodi')" class="btn" :class="select_name=='hoodi' ? 'btn-primary' :'btn-dark'">hoodi</button>
+                        <button @click="chose_option('chaussete')" class="btn" :class="select_name=='chaussete' ? 'btn-primary' :'btn-dark'">chaussete</button>
                       </div>
-  
                 </div>
                 <div class="col-lg-10 text-center">
                       <all_proudct @sortby="sortby" :our_products="myproject" :select_name="select_name" :prix="prix" ></all_proudct>
@@ -44,6 +43,7 @@
       prix:0,
       do_sort_by_product:0,
       select_name:'',
+
       our_products: {
             T_shirt: [
                {id:1,name:'T-Shirt 1',src:' /store/t-shirt (2).jpg',quantity:5,Prix:10,favorite:0,  cart:0},
@@ -71,31 +71,16 @@
     sortby(){
       this.do_sort_by_product=1;
     },
-       chose_all(){
-         this.select_name='';
-       },
-
-       chose_tshirt(){
-         this.select_name="T_shirt";
-       },
-
-       chose_sweater(){
-         this.select_name="sweater";
-       },
-
-       chose_hoodi(){
-         this.select_name="hoodi";
-       },
-
-       chose_chaussete(){
-         this.select_name="chaussete";
-       }
+    chose_option(select){
+         this.select_name=select;
+    },
    },
    components:{
      all_proudct
    },
    computed:{
       myproject(){
+          //produc=JSON.parse(JSON.stringify());
           if(this.select_name==""){
              if(this.do_sort_by_product==1){
                for(let property in this.our_products){
