@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class=" ">
-          <div class="">
+        <div class="">
             <div class="d-flex justify-content-center">
            <button :disabled="all_purchase.length==0" class="btn btn-dark mb-4 d-flex" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <i class="material-icons mx-2">shopping_cart</i> 
@@ -13,8 +12,7 @@
               Sort By Prix
            </button>
           </div>
-          </div>
-    </div>
+        </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -118,7 +116,7 @@
        <div v-for="(our_product) in our_products" :key="our_product.name">
           <div class="row d-flex justify-content-center  container p-4">
               <div  class="col-lg-4 " v-for="our1 in our_product" :key="our1.id" >
-                  <div v-if="our1.Prix>=prix"  class="card mb-5">
+                  <div v-if="our1.Prix >= prix"  class="card mb-5">
                       <div  class="card-body container">
                          <p class="card-header">{{our1.name}}</p>
                          <div class="box-container">
@@ -133,7 +131,7 @@
                          </div>
                          <div>
                               <button :disabled="our1.quantity==0" @click="addcart(our1)" class="btn btn-outline-success">Add</button>
-                              <button  :disabled="our1.cart==0"   @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
+                              <button :disabled="our1.cart==0"   @click="delete_cart(our1)" class="btn btn-outline-danger mx-2"> Delete </button>
                          </div>
                      </div>
                  </div>
@@ -172,6 +170,7 @@
 
 
 <script>
+
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import Vue from 'vue';

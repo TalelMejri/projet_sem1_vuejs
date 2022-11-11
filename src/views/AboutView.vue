@@ -5,14 +5,12 @@
             <div class="col-xl-12 col-lg-9 container">
             <div class="row  rounded shadow-lg p-5">
                 <div class="col-lg-2 border-end">
-                  
                       <h1 class="mb-5">Menu :</h1>
                       <div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
                           <input type="range" id="temp" min="0" v-model="prix" max="60" step="1" name="temp" />
                           <input type="text" class="form-control" v-model="prix">
                       </div>
-
                       Select Your Kind OF Clothes :
                       <div class="d-flex flex-column gap-4 py-2">
                         <button @click="chose_option('')" class="btn" :class="select_name=='' ? 'btn-primary' :'btn-dark'">All</button>
@@ -42,7 +40,7 @@
     return{
       prix:0,
       do_sort_by_product:0,
-      prod_ord:[],
+      prod_ord:{},
       select_name:'',
       our_products: {
             T_shirt: [
@@ -72,6 +70,7 @@
       this.do_sort_by_product=1;
     },
     chose_option(select){
+      this.do_sort_by_product=0;
          this.select_name=select;
     },
    },
@@ -80,20 +79,25 @@
    },
    computed:{
       myproject(){
+          //
           this.prod_ord=JSON.parse(JSON.stringify(this.our_products));
-          if(this.select_name==""){
+          if(this.select_name == ""){
+              //  console.log("dddd"+this.prod_ord);
              if(this.do_sort_by_product==1){
-               for(let property in this.our_products){
-                       this.prod_ord= this.our_products[property].sort((a,b)=>a.Prix>b.Prix ? -1 : 1);
+               // console.log("dddd sort"+this.prod_ord);
+               for(const property in this.prod_ord){
+                       this.prod_ord[property].sort((a,b)=>a.Prix>b.Prix ? -1 : 1);
                   }
                 }
-               return this.prod_ord;
+               return {...this.prod_ord};
             }
            else{
+               console.log("fff "+this.prod_ord[this.select_name]);
                if(this.do_sort_by_product==1){
-                    return this.our_products[''+this.select_name+''].sort((a,b)=>a.Prix>b.Prix ? -1 : 1); 
+                 console.log("fff sort"+this.prod_ord[this.select_name]);
+                    return {...this.prod_ord[''+this.select_name+''].sort((a,b)=>a.Prix>b.Prix ? -1 : 1)}; 
                }  
-                return this.our_products[''+this.select_name+''];
+                    return {...this.prod_ord[''+this.select_name+'']};
             }   
           }
                /*if(this.prix!=0){

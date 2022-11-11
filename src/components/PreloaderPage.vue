@@ -18,7 +18,7 @@ export default{
         }
     },
     mounted(){
-        setTimeout(()=>this.show_loading=false,6000);
+        setTimeout(()=>this.show_loading=false,1);
     }
 
 }
