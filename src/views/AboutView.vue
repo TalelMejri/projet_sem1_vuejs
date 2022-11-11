@@ -5,7 +5,7 @@
             <div class="col-xl-12 col-lg-9 container">
             <div class="row  rounded shadow-lg p-5">
                 <div class="col-lg-2 border-end">
-
+                  
                       <h1 class="mb-5">Menu :</h1>
                       <div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
@@ -42,8 +42,8 @@
     return{
       prix:0,
       do_sort_by_product:0,
+      prod_ord:[],
       select_name:'',
-
       our_products: {
             T_shirt: [
                {id:1,name:'T-Shirt 1',src:' /store/t-shirt (2).jpg',quantity:5,Prix:10,favorite:0,  cart:0},
@@ -80,17 +80,14 @@
    },
    computed:{
       myproject(){
-          //produc=JSON.parse(JSON.stringify());
+          this.prod_ord=JSON.parse(JSON.stringify(this.our_products));
           if(this.select_name==""){
              if(this.do_sort_by_product==1){
                for(let property in this.our_products){
-                   for(let i=0;i<this.our_products[property].length;i++){
-                       console.log(this.our_products[property]);
-                       return this.our_products[property].sort((a,b)=>a.Prix>b.Prix ? -1 : 1);
-                    }
+                       this.prod_ord= this.our_products[property].sort((a,b)=>a.Prix>b.Prix ? -1 : 1);
                   }
                 }
-               return this.our_products;
+               return this.prod_ord;
             }
            else{
                if(this.do_sort_by_product==1){

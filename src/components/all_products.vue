@@ -118,7 +118,7 @@
        <div v-for="(our_product) in our_products" :key="our_product.name">
           <div class="row d-flex justify-content-center  container p-4">
               <div  class="col-lg-4 " v-for="our1 in our_product" :key="our1.id" >
-                  <div v-if="our1.Prix>prix"  class="card mb-5">
+                  <div v-if="our1.Prix>=prix"  class="card mb-5">
                       <div  class="card-body container">
                          <p class="card-header">{{our1.name}}</p>
                          <div class="box-container">
