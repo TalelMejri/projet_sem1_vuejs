@@ -46,7 +46,7 @@
                                       </div>
                                       <div class="col-lg-4 ">
                                         <div class="d-flex" >
-                                          <button @click="buy.cart--" class="btn btn-primary w-50"
+                                          <button :disabled="buy.quantity==0" @click="buy.cart--" class="btn btn-primary w-50"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                             <i  class="material-icons"> remove</i>
                                           </button>

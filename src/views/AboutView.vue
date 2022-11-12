@@ -8,7 +8,7 @@
                       <h1 class="mb-5">Menu :</h1>
                       <div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
-                          <input type="range" id="temp" min="0" v-model="prix" max="60" step="1" name="temp" />
+                          <input type="range" id="temp" min="0" v-model="prix" :max="prix_max" step="1" name="temp" />
                           <input type="text" class="form-control" v-model="prix">
                       </div>
                       Select Your Kind OF Clothes :
@@ -21,7 +21,7 @@
                       </div>
                 </div>
                 <div class="col-lg-10 text-center">
-                      <all_proudct @sortby="sortby" :our_products="myproject" :select_name="select_name" :prix="prix" ></all_proudct>
+                      <all_proudct @sortby="sortby" :our_products="myproject" :select_name="select_name" :prix="parseInt(prix)" ></all_proudct>
                 </div>
               </div>
             </div>
@@ -41,6 +41,7 @@
       prix:0,
       do_sort_by_product:0,
       prod_ord:{},
+      prix_max:0,
       select_name:'',
       our_products: {
             T_shirt: [
@@ -71,7 +72,7 @@
     },
     chose_option(select){
       this.do_sort_by_product=0;
-         this.select_name=select;
+      this.select_name=select;
     },
    },
    components:{
@@ -79,22 +80,34 @@
    },
    computed:{
       myproject(){
-          //
+        this.prix = 0 ;
           this.prod_ord=JSON.parse(JSON.stringify(this.our_products));
           if(this.select_name == ""){
-              //  console.log("dddd"+this.prod_ord);
+             for(const prob in this.our_products){
+                 for(let i=0;i<this.our_products[prob].length;i++){
+                      if(this.our_products[prob][i].Prix>this.prix_max){
+                        this.prix_max=parseInt(this.our_products[prob][i].Prix);
+                      }
+                 }
+             }
              if(this.do_sort_by_product==1){
-               // console.log("dddd sort"+this.prod_ord);
                for(const property in this.prod_ord){
                        this.prod_ord[property].sort((a,b)=>a.Prix>b.Prix ? -1 : 1);
                   }
                 }
                return {...this.prod_ord};
             }
-           else{
-               console.log("fff "+this.prod_ord[this.select_name]);
+           else{ 
+            // for(let variant of this.our_products[this.select_name]){
+            //      console.log(variant.Prix);
+            //  }
+            this.prix_max = 0;
+            this.our_products[this.select_name].forEach(it=>{
+                this.prix_max = this.prix_max<it.Prix ?  it.Prix : this.prix_max;
+            });
+            console.log(this.prix_max);
+
                if(this.do_sort_by_product==1){
-                 console.log("fff sort"+this.prod_ord[this.select_name]);
                     return {...this.prod_ord[''+this.select_name+''].sort((a,b)=>a.Prix>b.Prix ? -1 : 1)}; 
                }  
                     return {...this.prod_ord[''+this.select_name+'']};
