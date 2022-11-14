@@ -3,15 +3,15 @@
       <div class="container-fluid py-5">
           <div class="d-flex py-5 justify-content-center">
             <div class="col-xl-12 col-lg-9 container">
-            <div class="row  rounded shadow-lg p-5">
-                <div class="col-lg-2 border-end">
-                      <h1 class="mb-5">Menu :</h1>
+              <div class="row  rounded shadow-lg p-5">
+                 <div class="col-lg-2 border-end">
+                      <h1 class="mb-5 text-danger">Menu :</h1>
                       <div class="mt-5 py-4">
                           <label for="temp">Prix :</label><br />
                           <input type="range" id="temp" min="0" v-model="prix" :max="prix_max" step="1" name="temp" />
                           <input type="text" class="form-control" v-model="prix">
                       </div>
-                      Select Your Kind OF Clothes :
+                         Select Your Kind OF Clothes : 
                       <div class="d-flex flex-column gap-4 py-2">
                         <button @click="chose_option('')" class="btn" :class="select_name=='' ? 'btn-primary' :'btn-dark'">All</button>
                         <button @click="chose_option('T_shirt')" class="btn" :class="select_name=='T_shirt' ? 'btn-primary' :'btn-dark'">T_shirt</button>
