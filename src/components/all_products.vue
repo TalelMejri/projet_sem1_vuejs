@@ -38,7 +38,7 @@
                                         </div>
                                       </div>
                                       <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                        <p>Size: M</p>
+                                        <p>Size : M</p>
                                         <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
                                           title="Move to the wish list" @click="delete_product(buy.id)">
                                           <i  class="material-icons">delete</i>
