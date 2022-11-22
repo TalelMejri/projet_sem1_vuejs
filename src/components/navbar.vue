@@ -12,6 +12,7 @@
               <li class="nav-item mx-0 mx-lg-1"><router-link to="/"><a class="nav-link text-center px-0 px-lg-3 rounded" href="#portfolio">    <i  class="material-icons mx-2"> home</i> Home </a></router-link> </li>
               <li class="nav-item mx-0 mx-lg-1"><router-link to="/about"><a class="nav-link text-center px-0 px-lg-3 rounded" href="#service">    <i  class="material-icons mx-2"> store</i> Store</a></router-link></li>
               <li class="nav-item mx-0 mx-lg-1"><router-link to="/contact"><a class="nav-link text-center px-0 px-lg-3 rounded" href="#contact">    <i  class="material-icons mx-2"> reviews</i> Contact </a></router-link></li>
+              <li class="nav-item mx-0 mx-lg-1"><router-link to="/testevent"><a class="nav-link text-center px-0 px-lg-3 rounded" href="#portfolio">    Events </a></router-link> </li>
             </ul>
         </div>
     </div>
