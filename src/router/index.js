@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import contact from '../views/contact.vue'
 import testEvent from '../views/TestEventView.vue'
+import eventbyid from '../views/EventdetailsView'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue')
+  },
+  {
+    path:"/event/:id",
+    name:'event',
+    component:eventbyid
   },
   {
     path: '/testevent',
